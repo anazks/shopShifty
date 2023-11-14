@@ -1,0 +1,37 @@
+.admin_sidebar{
+    width: 15%;
+    height: 739px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+.admin_logo{
+    width: 100%;
+}
+.admin_logo img{
+    width: 100%;
+    padding-left: 15px;
+    padding-top: 20px;
+    
+}
+.items a{
+    text-decoration: none;
+    color: rgb(33, 33, 33);
+}
+.sidebar_list{
+    overflow: hidden;
+    text-align: left;
+    
+}
+.sidebar_list .items a {
+    display: block;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Poppins";
+}
+.sidebar_list .items a:hover{
+    background-color: rgb(133, 133, 255);
+    color: white;
+    transition: .5s;
+}

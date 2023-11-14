@@ -1,0 +1,26 @@
+.order_heading{
+    font-family: "Poppins";
+    color: rgb(133, 133, 255);
+    font-size: 30px;
+    line-height: 4px;
+    padding: 20px;
+}
+.order_heading p{
+    color: #2d2d2d;
+    font-size: 14px;
+}
+.order_list{
+    width: 100%;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    padding: 20px;
+    margin-left: 20px;
+}
+.order_list th,td{
+    padding: 15px 60px 15px;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    font-family: "Poppins";
+}
+.order_list button{
+    padding: 10px;
+    font-family: "Poppins";
+}

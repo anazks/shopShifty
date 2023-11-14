@@ -1,0 +1,83 @@
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+.sign_in_main{
+    width: 60%;
+    height: 550px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sign_in_left{
+    width: 50%;
+    height: 550px
+    
+}
+.sign_in_pattern{
+    width: 100%;
+    overflow: hidden;
+}
+.sign_in_right{
+    padding-right: 80px;
+}
+.sign_in_pattern img{
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+
+}
+.sign_in_heading{
+    text-align: center;
+}
+.sign_in_heading h1{
+    font-family: Elephant;
+    font-size: 25px;
+    color: #FD7B2B;
+}
+.sign_in_heading p{
+    margin-top: -20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(49, 49, 49);
+}
+.sign_in_form{
+    text-align: center;
+}
+.sign_in_form input{
+    width: 280px;
+    height: 38px;
+    border: none;
+    border-radius: 30px;
+    background-color: rgb(240, 240, 240);
+    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 15px;
+    color: rgb(48, 48, 48);
+    opacity: 80%;
+}
+.sign_in_form button{
+    margin-top: 8px;
+    font-size: 18px;
+    padding: 10px 40px 10px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    background-color: #FD7B2B;
+    color: white;
+    font-weight: 600;
+
+}
+.sign_in_forgot{
+    display: flex;
+    font-size: 14px;
+    margin-top: -4px;
+    justify-content: space-around;
+    color: #FD7B2B;
+}

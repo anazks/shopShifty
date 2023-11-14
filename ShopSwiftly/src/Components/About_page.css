@@ -1,0 +1,28 @@
+.about_section_one{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+.section_image{
+    width: 50%;
+    overflow: hidden;
+    padding-left: 40px;
+
+}
+.section_image img{
+    width: 90%;
+    border-radius: 30px;
+}
+.section_one_content{
+    width: 50%;
+    padding-right: 40px;
+}
+.section_one_content p{
+    font-size: 18px;
+    line-height: 27px;
+    text-align: justify;
+    font-weight: 380;
+}

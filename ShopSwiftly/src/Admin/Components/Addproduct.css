@@ -1,0 +1,46 @@
+.add_pro_heading{
+    font-family: "Poppins";
+    color: rgb(133, 133, 255);
+    padding: 20px;
+    font-size: 30px;
+    line-height: 4px;
+}
+.add_pro_heading p{
+    font-size: 14px;
+    color: #2d2d2d;
+}
+.Add_pro_form{
+    padding: 80px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    text-align: center;
+    margin-left: 400px;
+}
+.Add_pro_form input{
+    width: 230px;
+    height: 38px;
+    padding-left: 20px;
+    font-family: "Poppins";
+    outline: none;
+    border: 1px solid rgb(215, 215, 215);
+}
+.Add_pro_form select{
+    width: 230px;
+    height: 38px;
+    padding-left: 20px;
+    border: 1px solid rgb(215, 215, 215);
+    font-family: "Poppins";
+}
+.Add_pro_form button{
+    width: 150px;
+    height: 36px;
+    margin-top: 20px;
+    background-color: rgb(133, 133, 255);
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.alert_product{
+    padding-top: 20px;
+}

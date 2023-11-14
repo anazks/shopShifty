@@ -1,0 +1,111 @@
+.product_cards{
+    display: flex ;
+    flex-wrap: wrap;
+    overflow: hidden;
+    gap: 20px;
+    justify-content: center;
+}
+.product_card{
+    width: 300px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+.product_card_top{
+    width: 280px;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 15px;
+    position: absolute;
+    margin: 10px;
+}
+.product_card_top img{
+    width: 100%;
+    object-fit: fill;
+}
+.product_card_details{
+    padding-top: 240px;
+    padding-left: 10px;
+}
+.product_name{
+    height: 45px;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* background-color: red; */
+    margin-top: 10px;
+}
+.product_name p{
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: -2px;
+}
+
+.product_review p{
+    font-family: 12px;
+    font-weight: 500;
+    opacity: 70%;
+}
+.product_description{
+    height: 60px;
+    width: 95%;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: -23px;
+}
+.product_description p{
+    width: 100%;
+    height: 80px;
+    font-size: 15px;
+    font-weight: 400;
+    /* text-overflow: ellipsis; */
+    line-height: 22px;
+}
+.product_price{
+    margin-top: -15px;
+}
+.product_price p{
+    font-size: 25px;
+    font-weight: 700;
+}
+.product_price span{
+    font-size: 12px;
+    color: red;
+}
+.product_cart_buy{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-left: 15px;
+}
+.product_addtocart button{
+    padding: 10px 20px 10px;
+    background-color: #FD7B2B;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+}
+.product_buynow button{
+    padding: 10px 20px 10px;
+    background-color: #FD7B2B;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;   
+}
+.product_buynow{
+    padding-right: 35px;
+}
+
+.product_card_heading h1{
+    font-family: Elephant;
+    font-size: 30px;
+    letter-spacing: 4px;
+    padding-left: 40px;
+    padding-top: 100px;
+}

@@ -1,0 +1,45 @@
+.banner{
+    display: flex;
+    padding-left: 40px;
+}
+.bannerLeft{
+    padding-top: 100px;
+}
+.bannerHeading h1{
+    font-family: Elephant;
+    font-size: 60px;
+    color: black;
+}
+.bannerSubheading{
+    width: 80%;
+    top: -20px;
+}
+.bannerSubheading p{
+    font-size: 15px;
+    top: -40px;
+}
+.bannerButton{
+    padding-top: 20px;
+}
+.bannerButton button{
+    padding: 15px 30px 15px;
+    font-size: 18px;
+    border-radius: 30px;
+    background-color: #FD7B2B;
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+.bannerRight{
+    padding-top: 20px;
+    padding-left: 200px;
+}
+.bannerRight img{
+    width: 100%;
+}
+@media (max-width:720px) {
+    .banner{
+        display: block;
+    }
+    
+}

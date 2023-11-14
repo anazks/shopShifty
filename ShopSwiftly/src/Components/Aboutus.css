@@ -1,0 +1,70 @@
+.about_headiing h1{
+    font-family: Elephant;
+    font-size: 30px;
+    letter-spacing: 4px;
+    font-weight: 600;
+}
+.about_headiing{
+    padding-left: 40px;
+    padding-top: 60px;
+}
+.aboutus_left_content{
+    width: 40%;
+    padding-left: 40px;
+    padding-top: 30px;
+}
+.aboutus_left_content img{
+    width: 100%;
+    border-radius: 30px;
+
+}
+.aboutus_content{
+    display: flex;
+    padding-top: 120px;
+    padding-left: 20px;
+}
+
+.aboutus_right_content{
+    width: 50%;
+}
+.about_description{
+    padding-left: 40px;
+}
+.about_description p{
+    font-size: 15px;
+    line-height: 23px;
+    text-align: justify;
+    color: black;opacity: 70%;
+
+}
+.about_button button{
+    width: 200px;
+    height: 56px;
+    border-radius: 30px;
+    font-size: 18px;
+    background-color: #FD7B2B;
+    color: white;
+    border: none;
+}
+.about_button button:hover{
+    border: 1px solid #FD7B2B;
+    background-color: white;
+    color: #FD7B2B;
+    transition: 0.5s;
+}
+.about_button{
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+@media (max-width:720px) {
+    .aboutus_content{
+        display: block;
+    }
+    .aboutus_left_content{
+        width: 100%;
+    }
+    .aboutus_right_content{
+        width: 100%;
+    }
+}

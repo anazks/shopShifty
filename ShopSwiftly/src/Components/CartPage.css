@@ -1,0 +1,106 @@
+.cart_heading h1{
+    font-size: 30px;
+    font-family: Elephant;
+    letter-spacing: 4px;
+    border-bottom: 1px solid rgb(205, 205, 205);
+    line-height: 80px;
+
+}
+.cart_heading{
+    padding-left: 40px;
+    padding-top: 40px;
+}
+.cart_product_img{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.cart_product_img img{
+    width: 100%;
+}
+.cart_product_details{
+    display: block;
+    line-height: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+}
+.cart_product_details p{
+    font-size: 15px;
+
+}
+.cart_product_details button{
+    padding: 4px;
+    font-size: 13px;
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+}
+.cart_products{
+    display: flex;
+}
+.cart_items{
+    display: flex;
+    /* width: 50%; */
+    justify-content: space-around;
+    align-items: center;
+    /* border: 1px solid; */
+}
+.cart_product_counter button{
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: rgb(229, 229, 229);
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor:pointer;
+}
+.cart_product_counter input{
+    width: 40px;
+    padding: 15px;
+    background-color: rgb(249, 249, 249);
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+.cart_hero{
+    display: flex;
+    justify-content: space-around;
+}
+
+.cart_total_table{
+    padding: 30px;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+}
+
+.cart_total_table table th{
+    padding: 10px;
+    font-size: 18px;
+
+}
+.cart_total_table table td{
+    padding: 10px;
+    border-bottom: 1px solid rgb(217, 217, 217);
+}
+.cart_checkout_btn button{
+    margin-top: 20px;
+    padding: 15px 100px 15px;
+    font-size: 18px;
+    background-color: #FD7B2B;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-weight: 600;
+}
+.cart_item{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}

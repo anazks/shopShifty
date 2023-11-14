@@ -1,0 +1,49 @@
+.myorders_heading h1{
+    font-size: 30px;
+    font-family: Elephant;
+}
+.myorders_heading{
+    padding: 60px 40px 20px;
+}
+.myorders_card{
+    width: 450px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 20px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    background-color: rgb(241, 241, 241);
+    position: relative;
+}
+.myorder_card_left{ 
+    position: absolute;
+    width: 40%;
+    padding: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.myorder_card_left img{
+    width: 100%;
+    border-radius: 15px;
+}
+.myorder_card_right{
+    position: absolute;
+    padding-left: 210px;
+    padding-top: 20px;
+    line-height: 15px;
+}
+.myorder_card_right button{
+    padding: 10px 20px 10px;
+    background-color: #FD7B2B;
+    border-radius: 30px;
+    color: white;
+    border: none;
+}
+.myorders_main_cards{
+    gap: 20px;
+    padding-left: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
