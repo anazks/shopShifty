@@ -10,6 +10,7 @@ function SignUppage() {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
     const ConfirmPasswordRef = useRef(null)
+    const dateRef = useRef(null)
 const handleSubmit = (event)=>{
           event.preventDefault();
           
@@ -17,6 +18,7 @@ const handleSubmit = (event)=>{
           const Email = emailRef.current.value;
           const Password = passwordRef.current.value;
           const Cpassword=ConfirmPasswordRef.current.value;
+          const dob = dateRef.current.value;
          try {
           if(Name===""||Email===""||Password==="" || Cpassword === ""){
             alert("fill all blanks")
@@ -27,6 +29,7 @@ const handleSubmit = (event)=>{
                 UserName: Name,
                 Email: Email,
                 Password: Password,
+                dob
               }
               console.log(user)
               
@@ -64,6 +67,7 @@ const handleSubmit = (event)=>{
                   <form onSubmit={handleSubmit}>
                     <input type="text" placeholder='Enter Username' ref={usernameRef}/><br/>
                     <input type="text" placeholder='Email or Phone Number' ref={emailRef}/><br/>
+                    <input type="date" ref={dateRef} />
                     <input type="password" placeholder='Password' ref={passwordRef}/><br/>
                     <input type="password" placeholder='Confirm Password' ref={ConfirmPasswordRef}/><br/>
                     <div className='sign_in_forgot'>

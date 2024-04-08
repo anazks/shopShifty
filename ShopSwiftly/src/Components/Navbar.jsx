@@ -1,108 +1,101 @@
-import React, { useContext } from 'react'
-import './Navbar.css'
-import { Link } from 'react-router-dom'
-import cart from "../Icons/cart.svg"
-import logo from "../Icons/logo.svg"
-import profile from "../Icons/account.svg"
-import menuIcon from "../Icons/menu.svg"
-import { UserContext } from '../Static/UserContext'
-import ProfilePic from '../Images/elssie.jpg'
-
-
+import React, { useContext, useState } from 'react';
+import './Navbar.css';
+import { Link } from 'react-router-dom';
+import menuIcon from "../Icons/menu.svg";
+import ProfilePic from '../Images/elssie.jpg';
+import Axios from '../../src/Static/Axios';
+import { UserContext } from '../Static/UserContext';
+import { Modal, Button } from 'react-bootstrap'; // Importing React Bootstrap components
 
 function Navbar() {
-    const {user,setUser} = useContext(UserContext)
-    console.log(user,"from nav")
-    const logout = ()=>{
+    const { user, setUser } = useContext(UserContext);
+    const [modalShow, setModalShow] = useState(false); // State variable to control modal visibility
+    const [eventData, setEventData] = useState(null); // State variable to store event data
+
+    const logout = () => {
         localStorage.removeItem("Auth_info");
-        setUser(null)
-    }
-    
-  return (
-    <>
-        <div className='Nav'>
-            <div className='leftNav'>
-                <div className='Logo'>
-                     <img src={logo} alt="" />
-                </div>
-                <div className='navList'>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><div className='dropDown'>
-                            <button>Category</button>
-                            <div className='dropDownlist'>
+        setUser(null);
+    };
+
+    const handleNotificationClick = async (notificationId) => {
+        try {
+            // Make a POST request to the 'getTaggedEvent' endpoint with the notificationId
+            let data = { notificationId };
+            const response = await Axios.post('/getTaggedEvent', data);
+            console.log("Event data:", response.data);
+            setEventData(response.data[0]); // Update eventData state with response data
+                console.log(eventData,"eventdata")
+            setModalShow(true); // Show the modal
+        } catch (error) {
+            console.error("Error fetching event data:", error);
+        }
+    };
+
+    return (
+        <>
+            <div className='Nav'>
+                <div className='rightNav'>
+                    <div className='dropdown'>
+                        <span className='dropbtn' style={{ color: 'white' }}>notification</span>
+                        <div className='dropdown-content'>
+                            {user && user.notification.length > 0 ? (
                                 <ul>
-                                    <li>Electronics</li>
-                                    <li>Men's Fashion</li>
-                                    <li>Ladies Fasion</li>
-                                    <li>Laptops</li>
-                                    <li>Sports & Outdoors</li>
-                                    <li>Books</li>
-                                    <li>Health & Beauty</li>
-                                    <li>Furniture</li>
-                                    <li>Kitchen Essentials</li>
+                                    {user.notification.map((notification, index) => (
+                                        <li key={index}>
+                                            <Link
+                                                to={notification.link}
+                                                style={{ textDecoration: 'none', color: 'white' }}
+                                                onClick={() => handleNotificationClick(notification.id)}
+                                            >
+                                                {notification.addedBy} Tagged in a memory
+                                            </Link>
+                                        </li>
+                                    ))}
                                 </ul>
-                            </div>
-                            </div></li>
-
-                            <li><Link to="/product">Products</Link></li>
-                            <li> <Link to="/about">About Us</Link></li>
-                            <li><Link to="/blog">Blog</Link></li>
-                            { user ?  <li><Link to='/myorders'>My Orders</Link></li> : ""}
-                           
-                            <li>  <div className='searchBar'>
-                    <input type="search" name="" id="" placeholder='Search Products...'/>
-                    <button>Search</button>
-                </div></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className='rightNav'>
-                <div className='navCart'> 
-                    {
-                        user ? 
-                    <button>
-                        <Link to='/cart'>
-                             <img src={cart} alt=""/><sup><div className='cart_counter'><p>{user ? user.cartTotal : 0}</p></div></sup>
-                        </Link>
-                    </button>
-                        : 
-                        ""
-                    }
-                </div>
-                <div className='Profile'>
-                    {
-                        user ? 
-
-                                <button className='user_profile'><img src={ProfilePic} alt=""/>{user.user.UserName}</button>
-                        :
-                                <button><img src={profile} alt="" /></button>
-                    }
-                    <div className='profileDropdown'>
-                        {
-                            user ?
-                         <ul>
-                            <li><Link  onClick={()=>logout()}>Logout</Link></li>
-                        </ul>
-                         :
-                        <ul>
-                            <li><Link to="/signin">Sign In</Link></li>
-                            <li><Link to="/signup">Sign Up</Link></li>
-                        </ul>
+                            ) : (
+                                <span>No notifications</span>
+                            )}
+                        </div>
+                    </div>
+                    <div className='Profile'>
+                        {user ? 
+                            <button className='user_profile'><img src={ProfilePic} alt="" /><span style={{color:'white'}}>{user.user.UserName}</span></button>
+                            : <button style={{color:"white"}}>Account</button>
                         }
-                        
+                        <div className='profileDropdown'>
+                            {user ? 
+                                <ul>
+                                    <li><Link onClick={()=>logout()}>Logout</Link></li>
+                                </ul>
+                                :
+                                <ul style={{color:'white'}}>
+                                    <li style={{color:'white'}}><Link to="/signin">Sign In</Link></li>
+                                    <li style={{color:'white'}}><Link to="/signup">Sign Up</Link></li>
+                                </ul>
+                            }
+                        </div>
                     </div>
                 </div>
-
-                <div className='Hamburger'>
-                    <img src={menuIcon} alt="" />
-                </div>
             </div>
-          
-        </div>
-    </>
-  )
+            {/* Modal component */}
+            <Modal show={modalShow} onHide={() => setModalShow(false)} >
+                <Modal.Header closeButton style={{backgroundColor:'black',color:'white'}}>
+                    <Modal.Title>Tagged Memory</Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{backgroundColor:'black',color:'white'}}>
+                    {eventData && (
+                        <div>
+                            {/* Display event data here */}
+                            <p>Memory Script: <i>{eventData.title}</i></p>
+                            <p>Date: {eventData.date}</p>
+                            {/* Add more fields as needed */}
+                        </div>
+                    )}
+                </Modal.Body>
+              
+            </Modal>
+        </>
+    );
 }
 
-export default Navbar
+export default Navbar;

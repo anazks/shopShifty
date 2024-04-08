@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Realtime Database Example</title>
+  <style>
+    /* Add CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Realtime Database Example</h1>
+  <div>
+    <h2 id="text"></h2>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+  apiKey: "AIzaSyAe1-P3H6MFUhGRE7WamJJtCd__SwDLIkc",
+  authDomain: "incubtest.firebaseapp.com",
+  databaseURL: "https://incubtest-default-rtdb.firebaseio.com",
+  projectId: "incubtest",
+  storageBucket: "incubtest.appspot.com",
+  messagingSenderId: "811994169907",
+  appId: "1:811994169907:web:469484f954633e96001946",
+  measurementId: "G-XVFF51HSQK"
+};
+
+  
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const display =  document.getElementById('text')
+    const dbRef = firebase.database().ref().child('test');
+    dbRef.on('value',snap => display.innerHTML =snap.val())
+  
+    // Function to fetch and display data
+   
+  </script>
+</body>
+</html>

@@ -1,15 +1,12 @@
 const express = require('express')
 const router = express.Router(); 
-const {HomepageData,userRegistration,userLogin,AddToCart,getCartItem,removefromCart,increment,decrement,createOrder} =  require('../Controllers/UserConrtoller')
+const {getAllUsers,getEvent,Addevent,HomepageData,userRegistration,userLogin,getOneEvent} =  require('../Controllers/UserConrtoller')
 
 router.route('/').get(HomepageData)
 router.route('/UserRegistration').post(userRegistration)
 router.route('/userLogin').post(userLogin)
-router.route('/AddToCart').post(AddToCart);
-router.route('/getCartItem').post(getCartItem);
-router.route('/RemoveFromCart').post(removefromCart)
-router.route('/increment').post(increment)
-router.route('/decrement').post(decrement)
-router.route('/CreateOrder').post(createOrder)
-
-module.exports = router;
+router.route('/Addevent').post(Addevent)
+router.route('/getEvent').post(getEvent)
+router.route('/getAllUsers').get(getAllUsers)
+router.route('/getTaggedEvent').post(getOneEvent)
+module.exports = router; 

@@ -2,7 +2,8 @@ const userModel = require('../Models/UserModel')
 const CartModel = require('../Models/CartModel')
 const bcrypt = require('bcryptjs'); 
 const Razorpay = require('../payments/Razorpay')
-
+const eventModel = require('../Models/eventModel')
+const NotificationModel = require('../Models/NotificationMOdel')
 const HomepageData = (req,res)=>{
     let data={name:"anaz"}
     res.send(data);
@@ -19,7 +20,8 @@ const userRegistration = async (req,res)=>{
                 req.body.Password = hash;
                 console.log(hash)
                 await  userModel.create(req.body)
-                console.log("Data inserted")
+                console.log("Data inserted"
+            )
             }
         })
         
@@ -42,12 +44,14 @@ const userLogin = async (req,res)=>{
             if(compare){
                 
                 let userId = user._id;
-                let cart= await CartModel.findOne({userId:userId})
-                 let cartTotal = cart.product.length;
-                console.log(cartTotal,"cart")
+                let notification = await NotificationModel.find({taggedUsers:userId})
+                console.log(notification,"---notifction")
+                // res.json(userData)
+                
                 let userData = {
                         user,
-                        cartTotal
+                        cartTotal :0,
+                        notification
                 }
                 res.json(userData)
             }else{
@@ -58,129 +62,106 @@ const userLogin = async (req,res)=>{
             console.log(error)
         }
 }
-const AddToCart = async(req,res)=>{
-    try {
-       console.log(req.body.obj)
-       let {obj} = req.body
-       let userId = req.body.userId; 
-       let cart=await CartModel.findOne({userId:userId});
-       console.log(cart)
-                if(!cart){
-                        console.log("i am here")
-                        obj.quantity = 1;
-                        let cartObject = {
-                            userId,
-                            product : [obj]
-                        };
-                        let Newcart = await CartModel.create(cartObject)
-                        console.log(Newcart.product,"----new")
-                }else{
-                    console.log("else part")
-                        console.log(cart.product,"product id")
-                           let cartExisit = cart.product.findIndex((product)=>product._id == obj._id)
-                           console.log(cartExisit)
-                           if(cartExisit == -1){
-                                obj.quantity = 1;
-                                    await CartModel.findOneAndUpdate({userId:userId},
-                                            {
-                                                $push: {
-                                                         product : obj
-                                                        }
-                                            }
-                                        )     
-                           }else{
-                                     res.json("Already Exsit")
-                           }
-                }
-       res.json("cart got")
-    } catch (error) {
-        
-    }
-}
 
-const getCartItem = async (req,res)=>{
-        try {   
-                console.log("at get cart")
-                console.log(req.body)
-                const userId = req.body._id;  
-                 let userCart = await CartModel.findOne({userId:userId});
-                 res.json(userCart)   
-            } catch (error) {
-                    console.log(error)
-            }
-    }
-const removefromCart = async(req,res)=>{
-        try {
-            console.log(req.body)
-            const Product_Id = req.body.id
-            const user_id = req.body.user_Id
-            console.log(Product_Id, user_id)
-            let removedItem = await CartModel.findOneAndUpdate(
-                { userId:user_id},
-                {
-                    $pull: {
-                        product: {
-                           
-                            '_id': Product_Id
-                        }
-                    }
+
+const Addevent = async(req,res)=>{
+    try {
+        console.log(req.body,"req.body")
+        console.log(req.files)
+        let addEvent = await eventModel.create(req.body);
+        const eventData = req.body;
+        // Split taggedUsers and userName into arrays
+        const taggedUsersArray = eventData.taggedUsers.split(',');
+        const userNameArray = eventData.userName.split(',');
+        /// Now, taggedUsersArray and userNameArray contain individual values 
+        console.log(taggedUsersArray); // Array of tagged users
+        console.log(userNameArray); // Array of user names
+         taggedUsersArray.map (async(user) => {
+                console.log(user,"--in loop")
+                let userID = req.body.userId
+                let taggedUsers = user
+                let addedBy = req.body.addedBy
+                id = req.body.id
+                let data = {
+                    userID,
+                    taggedUsers,
+                    id,
+                    addedBy
                 }
-            );
-            console.log(removedItem)
+                let Notification = await NotificationModel.create(data);
+                console.log("added..")
+        })
+        console.log("data added")   
+        if(req.files){
+            const {image} = req.files;
+           
+            await image.mv('./Public/Images/events/' + addEvent._id +".jpg").then((err)=>{
+                if(!err){
+                   
+                    res.json(true)
+                }else{
+    
+                    console.log(err)
+                }
+            }) 
+        }else{
             res.json(true)
-        } catch (error) {
-            console.log(error) 
         }
+       
+
+    } catch (error) {
+        console.log(error)
+        res.json(false)
+    }
 }
-const increment = async(req,res)=>{
-    let {user_Id} =req.body
-    let { id} = req.body
+const getEvent = async(req,res)=>{
     try {
-        let increments = await CartModel.findOneAndUpdate({userId:user_Id,'product._id': id},{
-            $inc:{ 'product.$.quantity' :1 },
-        })
+        console.log(req.body)
+       
+        let events = await eventModel.find({userId:req.body.userId})
+
+        res.json(events)
+    } catch (error) {
+        res.json(false)
+    }
+}
+const getAllUsers = async (req,res)=>{
+    try {
+        let users = await userModel.find({})
+        console.log(users)
+        res.json(users)
     } catch (error) {
         console.log(error)
     }
 }
-const decrement = async(req,res)=>{
-    let {user_Id} =req.body
-    let { id} = req.body
+const getOneEvent =  async (req, res) => {
     try {
-        let increments = await CartModel.findOneAndUpdate({userId:user_Id,'product._id': id},{
-            $inc:{ 'product.$.quantity' :-1 },
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
-const createOrder = async(req,res)=>{
-        let {total} = req.body;
-        let {userid} = req.body;
-        try {
-            const options = {
-                amount:total,
-                receipt:userid,
-                payment_capture: 1
-            };
-            const response = await Razorpay.orders.create(options)
-            res.json({
-                order_id: response.id,
-                currency: response.currency,
-                amount: response.amount,
-            })
-        } catch (error) {
-           console.log(error) 
+        console.log("id;;;notifictaion")
+        // Extract the notification ID from the request parameters
+        const notificationId = req.body.notificationId;
+        console.log(req.body,"id;;;notifictaion")
+        // Find the notification using NotificationModel
+        const event = await eventModel.find({id:notificationId});
+        console.log(event)
+        // If notification is found, send it in the response
+        if (event) {
+            res.json(event);
+        } else {
+            // If notification is not found, return a 404 Not Found response
+            res.status(404).json({ message: 'Notification not found' });
         }
-}
+    } catch (error) {
+        // If an error occurs, return a 500 Internal Server Error response
+        console.error('Error fetching notification:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 module.exports = {
-    HomepageData,
+    HomepageData, 
     userRegistration,
     userLogin,
-    AddToCart,
-    getCartItem,
-    removefromCart,
-    decrement,
-    increment,
-    createOrder
+    Addevent,
+    getEvent,
+    getAllUsers,
+    getOneEvent
 }

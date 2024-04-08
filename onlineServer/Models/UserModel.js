@@ -12,6 +12,11 @@ const UserSchema = new Schema({
         required : true,
         maxlenght : 100
     },
+    dob:{
+        type : String,
+        required : true,
+        maxlenght : 100
+    },
     Password:{
         type : String,
         required : true,
