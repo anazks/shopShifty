@@ -59,23 +59,26 @@ function Navbar() {
 
                     </div>
                     <div className='Profile'>
-                        {user ? 
-                            <button className='user_profile'><img src={ProfilePic} alt="" /><span style={{color:'white'}}>{user.user.UserName}</span></button>
-                            : <button style={{color:"white"}}>Account</button>
-                        }
-                        <div className='profileDropdown'>
-                            {user ? 
-                                <ul>
-                                    <li><Link onClick={()=>logout()}>Logout</Link></li>
-                                </ul>
-                                :
-                                <ul style={{color:'white'}}>
-                                    <li style={{color:'white'}}><Link to="/signin">Sign In</Link></li>
-                                    <li style={{color:'white'}}><Link to="/signup">Sign Up</Link></li>
-                                </ul>
-                            }
-                        </div>
-                    </div>
+    {user ? (
+        <button className='user_profile'><img src={ProfilePic} alt="" /><span style={{color:'white'}}>{user.user && user.user.UserName}</span></button>
+    ) : (
+        <button style={{color:"white"}}>Account</button>
+    )}
+    <div className='profileDropdown'>
+        {user ? (
+            <ul>
+                <li><Link onClick={() => logout()}>Logout</Link></li>
+            </ul>
+        ) : (
+            <ul style={{color:'white'}}>
+                <li style={{color:'white'}}><Link to="/signin">Sign In</Link></li>
+                <li style={{color:'white'}}><Link to="/signup">Sign Up</Link></li>
+            </ul>
+        )}
+    </div>
+</div>
+
+                    
                 </div>
             </div>
             {/* Modal component */}
