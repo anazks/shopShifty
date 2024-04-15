@@ -38,7 +38,7 @@ function Navbar() {
                     <div className='dropdown'>
                         <span className='dropbtn' style={{ color: 'white' }}>notification</span>
                         <div className='dropdown-content'>
-                            {user && user.notification.length > 0 ? (
+                            {user && user.notification && user.notification.length > 0 ? (
                                 <ul>
                                     {user.notification.map((notification, index) => (
                                         <li key={index}>
@@ -56,6 +56,7 @@ function Navbar() {
                                 <span>No notifications</span>
                             )}
                         </div>
+
                     </div>
                     <div className='Profile'>
                         {user ? 
